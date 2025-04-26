@@ -42,10 +42,12 @@ const LeftSidebar = () => {
         }
     }
 
+    // if (textType === 'Logout') {
+    //     logoutHandler();
+    // } else
+
     const sidebarHandler = (textType) => {
-        if (textType === 'Logout') {
-            logoutHandler();
-        } else if (textType === "Create") {
+        if (textType === "Create") {
             setOpen(true);
         } else if (textType === "Profile") {
             navigate(`/profile/${user?._id}`);
@@ -81,7 +83,6 @@ const LeftSidebar = () => {
             ),
             text: "Profile"
         },
-        { icon: <LogOut />, text: "Logout" },
         
     ]
     return (

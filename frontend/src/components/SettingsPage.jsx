@@ -1,4 +1,10 @@
+import { setAuthUser } from '@/redux/authSlice';
+import { setPosts, setSelectedPost } from '@/redux/postSlice';
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const SettingsPage = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,9 +22,34 @@ const SettingsPage = () => {
   };
 
   const handleDeactivate = () => {
-    // confirmation and API call
-    alert("Account deactivation initiated.");
+// confirmation and API call
+  alert("Account deactivation initiated.");
   };
+
+  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logoutHandler = async () => {
+    try {
+      const res = await axios.get('http://localhost:8000/api/v1/user/logout', { withCredentials: true });
+  
+      if (res && res.data && res.data.success) {
+        dispatch(setAuthUser(null));
+        dispatch(setSelectedPost(null));
+        dispatch(setPosts([]));
+        navigate("/login");
+        toast.success(res.data.message || "Logged out successfully!");
+      } else {
+        toast.error("Logout failed. Please try again.");
+      }
+  
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error(error?.response?.data?.message || "Logout failed. Server error.");
+    }
+  };
+  
+  
 
   return (
     <div className="ml-[260px] px-4 sm:px-6 py-6 w-[calc(100%-260px)] bg-gray-50 min-h-screen">
@@ -86,7 +117,7 @@ const SettingsPage = () => {
       <div className="bg-white shadow rounded-lg p-4">
         <h2 className="text-xl font-semibold mb-2">Account</h2>
         <button
-          onClick={handleLogout}
+          onClick={logoutHandler}
           className="bg-red-500 text-white px-4 py-2 rounded mr-4"
         >
           Logout
