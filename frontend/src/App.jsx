@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import ChatPage from './components/ChatPage'
 import EditProfile from './components/EditProfile'
 import Home from './components/Home'
-import Login from './components/Login'
+import Login from './components/login'
 import MainLayout from './components/MainLayout'
 import Profile from './components/Profile'
 import Signup from './components/Signup'
@@ -13,6 +13,9 @@ import { setSocket } from './redux/socketSlice'
 import { setOnlineUsers } from './redux/chatSlice'
 import { setLikeNotification } from './redux/rtnSlice'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import PlanningPage from './components/PlanningPage';
+import SettingsPage from './components/SettingsPage';
+
 
 
 const browserRouter = createBrowserRouter([
@@ -36,6 +39,14 @@ const browserRouter = createBrowserRouter([
         path: '/chat',
         element: <ProtectedRoutes><ChatPage /></ProtectedRoutes>
       },
+      {
+        path: '/planning',
+        element: <ProtectedRoutes><PlanningPage /></ProtectedRoutes>
+      },
+      {
+        path: '/settings',
+        element: <ProtectedRoutes><SettingsPage /></ProtectedRoutes>
+      }
     ]
   },
   {

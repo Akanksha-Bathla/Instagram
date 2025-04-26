@@ -1,5 +1,5 @@
 // 
-
+import { Calendar } from 'lucide-react';
 import { Heart, Home, LogOut, MessageCircle, PlusSquare, Search, TrendingUp } from 'lucide-react'
 import React, { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
@@ -12,6 +12,9 @@ import CreatePost from './CreatePost'
 import { setPosts, setSelectedPost } from '@/redux/postSlice'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import { Button } from './ui/button'
+import { Settings } from 'lucide-react';
+
+
 
 const LeftSidebar = () => {
     const navigate = useNavigate();
@@ -19,6 +22,7 @@ const LeftSidebar = () => {
     const { likeNotification } = useSelector(store => store.realTimeNotification);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+    
 
 
     const logoutHandler = async () => {
@@ -47,7 +51,13 @@ const LeftSidebar = () => {
             navigate("/");
         } else if (textType === 'Messages') {
             navigate("/chat");
+        } else if (textType === "Planning") {
+            navigate("/planning");
+        } else if (textType === "Settings") {
+            navigate("/settings");
         }
+        
+          
     }
 
     const sidebarItems = [
@@ -57,6 +67,9 @@ const LeftSidebar = () => {
         { icon: <MessageCircle />, text: "Messages" },
         { icon: <Heart />, text: "Notifications" },
         { icon: <PlusSquare />, text: "Create" },
+        { icon: <Calendar />, text: "Planning" },
+        { icon: <Settings />, text: "Settings" },
+
         {
             icon: (
                 <Avatar className='w-6 h-6'>
@@ -66,7 +79,9 @@ const LeftSidebar = () => {
             ),
             text: "Profile"
         },
+        { icon: <Settings />, text: "Settings" }, 
         { icon: <LogOut />, text: "Logout" },
+        
     ]
     return (
         <div className='fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[16%] h-screen'>
