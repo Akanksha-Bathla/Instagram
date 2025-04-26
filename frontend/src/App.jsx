@@ -1,3 +1,4 @@
+// 
 import { useEffect } from 'react'
 import ChatPage from './components/ChatPage'
 import EditProfile from './components/EditProfile'
@@ -68,9 +69,7 @@ function App() {
     if (user) {
       const socketio = io('http://localhost:8000', {
         query: {
-          userId: user?._id,
-          transports: ['websocket'],
-          withCredentials: true
+          userId: user?._id
         },
         transports: ['websocket']
       });
