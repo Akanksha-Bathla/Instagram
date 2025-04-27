@@ -86,16 +86,17 @@ const LeftSidebar = () => {
         
     ]
     return (
-        <div className='fixed top-0 z-10 left-0 px-4 border-r border-gray-300 w-[16%] h-screen'>
-            <div className='flex flex-col'>
+        <div className='fixed top-0 left-0 z-10 px-4 border-r sm:border-gray-300 
+                sm:w-[250px] w-[80px] h-screen flex flex-col items-center sm:items-start'>
+            <div className="flex flex-col items-center sm:items-start w-full mt-8 mb-6">
                 <h1 className='mt-8 pl-3 font-bold text-xl'><img src={YatraGoLogo} alt="YatraGo Logo" className='w-16 h-14'/></h1>
-                <div>
+                <div className="flex-1 w-full">
                     {
                         sidebarItems.map((item, index) => {
                             return (
-                                <div onClick={() => sidebarHandler(item.text)} key={index} className='flex items-center gap-3 relative hover:bg-gray-100 cursor-pointer rounded-lg p-3 my-3'>
+                                <div  onClick={() => sidebarHandler(item.text)} key={index} className='flex items-center gap-4 relative hover:bg-gray-100 cursor-pointer rounded-lg p-3 my-2'>
                                     {item.icon}
-                                    <span>{item.text}</span>
+                                    <span className="hidden md:inline">{item.text}</span>
                                     {
                                         item.text === "Notifications" && likeNotification.length > 0 && (
                                             <Popover>

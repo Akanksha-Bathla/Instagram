@@ -14,7 +14,7 @@ const Home = () => {
                 <Feed />
                 <Outlet />
             </div>
-            <RightSidebar />
+            < RightSidebar className='md:hidden'/>
         </div>
     )
 }
