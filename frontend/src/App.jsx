@@ -16,6 +16,8 @@ import { setLikeNotification } from './redux/rtnSlice'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import PlanningPage from './components/PlanningPage';
 import SettingsPage from './components/SettingsPage';
+import ExploreDestinations from './components/Explore'
+import SearchPage from './components/SearchPage'
 
 
 
@@ -47,6 +49,14 @@ const browserRouter = createBrowserRouter([
       {
         path: '/settings',
         element: <ProtectedRoutes><SettingsPage /></ProtectedRoutes>
+      },
+      {
+        path: '/explore',
+        element: <ProtectedRoutes><ExploreDestinations /></ProtectedRoutes>
+      },
+      {
+        path: '/search',
+        element: <ProtectedRoutes><SearchPage /></ProtectedRoutes>
       }
     ]
   },

@@ -59,8 +59,11 @@ const LeftSidebar = () => {
             navigate("/planning");
         } else if (textType === "Settings") {
             navigate("/settings");
+        } else if (textType === "Explore") {
+            navigate("/explore");
+        } else if (textType === "Search") {
+            navigate("/search");
         }
-        
           
     }
 
